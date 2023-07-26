@@ -14,19 +14,25 @@
   "author": "Alexei Boronine <alexei@boronine.com>",
   "license": "MIT",
   "files": [
-    "dist/hsluv.d.ts",
     "dist/esm/hsluv.js",
+    "dist/esm/hsluv.d.ts",
     "dist/esm/package.json",
     "dist/cjs/hsluv.js",
+    "dist/cjs/hsluv.d.ts",
     "dist/cjs/package.json",
     "LICENSE",
     "README.md"
   ],
-  "types": "dist/hsluv.d.ts",
+  "types": "dist/esm/hsluv.d.ts",
   "exports": {
-    "types": "./dist/hsluv.d.ts",
-    "import": "./dist/esm/hsluv.js",
-    "require": "./dist/cjs/hsluv.js"
+    "import": {
+      "types": "./dist/esm/hsluv.d.ts",
+      "default": "./dist/esm/hsluv.js"
+    },
+    "require": {
+      "types": "./dist/cjs/hsluv.d.ts",
+      "default": "./dist/cjs/hsluv.js"
+    }
   },
   "repository": {
     "type": "git",

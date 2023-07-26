@@ -10,18 +10,15 @@ PACKAGE_VERSION=$(node -p -e 'require("./package.json").version')
 echo "${PACKAGE_VERSION}" >assets/VERSION
 
 # First build ESM version that is used for testing
-npx tsc src/hsluv.ts --outDir dist/esm --module es6 --target es6
+npx tsc src/hsluv.ts --outDir dist/esm --module es6 --target es6 --declaration
 echo '{"type": "module"}' >dist/esm/package.json
 
 # Test against snapshot before continuing
 node test/test.mjs
 
 # Build CommonJS version
-npx tsc src/hsluv.ts --outDir dist/cjs --module commonjs --target es6
+npx tsc src/hsluv.ts --outDir dist/cjs --module commonjs --target es6 --declaration
 echo '{"type": "commonjs"}' >dist/cjs/package.json
-
-# Build d.ts file
-npx tsc src/hsluv.ts --outDir dist --declaration --emitDeclarationOnly
 
 # Build hsluv.min.js
 echo 'import {Hsluv} from "./esm/hsluv.js";window.Hsluv = Hsluv;' >dist/browser-entry.js
